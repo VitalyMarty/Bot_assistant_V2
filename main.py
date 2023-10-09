@@ -223,11 +223,11 @@ class Assistant:
         else:
             raise ValueError("Unknown command.")
 
-def paginated_contacts(self, page, page_size):
-    contacts = self.contacts.paginated_list(page, page_size)
-    if not contacts:
-        return "No contacts found on this page."
-    return "\n".join([str(record) for record in contacts])
+    def paginated_contacts(self, page, page_size):
+        contacts = self.contacts.paginated_list(page, page_size)
+        if not contacts:
+            return "No contacts found on this page."
+        return "\n".join([str(record) for record in contacts])
 
 if __name__ == "__main__":
     bot = Assistant()
