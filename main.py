@@ -131,7 +131,9 @@ class AddressBook(UserDict):
     def load_from_file(self, filename):
         try:
             with open(filename, 'rb') as file:
-                self._values = pickle.load(file)
+                data = pickle.load(file)
+                for record in data:
+                    self.add_record(record)
         except FileNotFoundError:
             self._values = []
 
@@ -186,7 +188,7 @@ class Assistant:
             else:
                 raise ValueError(f"Contact '{name}' not found.")
         elif command.startswith('phone '):
-            _, name = command.split(' ', 1)
+            *_, name = command.split(' ')
             contact = self.contacts.find(name)
             if contact:
                 return f"Phone number for {name}: {contact.phones[0].value}"
